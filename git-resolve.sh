@@ -34,6 +34,7 @@ function resolve-url() {
     local redirect="$1"
 
     while :; do
+        local _redirect
         _redirect="$(curl -w "%{redirect_url}" -s -o /dev/null "${redirect}" 2>/dev/null)"
 
         if [[ "${_redirect}" == "" ]]; then
@@ -60,13 +61,12 @@ function update-impl() {
     previous_url="$(git remote get-url "$2")"
     redirect_url="$(resolve-url "${previous_url}")"
 
+    echo "    ${previous_url}"
+
     if [[ "${previous_url}" == "${redirect_url}" ]]; then
-        echo "    ${previous_url}"
         echo "      up-to-date"
     else
-        echo "    ${previous_url}"
         echo "     -> ${redirect_url}"
-
         git remote set-url "$2" "${redirect_url}"
     fi
 
