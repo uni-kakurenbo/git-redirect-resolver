@@ -4,7 +4,7 @@ Automatically updates the remote URLs of your git repositories.
 ## Install
 
 ```
-git clone git-redirect-resolver
+git clone https://github.com/uni-kakurenbo/git-redirect-resolver.git
 sudo cp ./git-redirect-resolver/git-resolve.sh /bin/git-resolve
 ```
 
